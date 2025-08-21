@@ -1,0 +1,5 @@
+class CaixaController {
+    constructor() {
+        const;
+    }
+}

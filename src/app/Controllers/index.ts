@@ -1,0 +1,3 @@
+class CaixaController {
+    constructor() {}
+}
