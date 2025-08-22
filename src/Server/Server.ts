@@ -1,4 +1,7 @@
 import Express from "express";
+import { caixas } from "../routes/caixas";
+import { dados } from "../routes/dados";
+import cors from "cors";
 
 const Server = Express();
 
@@ -9,5 +12,10 @@ Server.get("/", (req, res) => {
 });
 
 Server.use(Express.json());
+Server.use(cors({
+    origin: "*"
+}))
+Server.use("/caixas", caixas)
+Server.use("/dados", dados)
 
 export default Server;
