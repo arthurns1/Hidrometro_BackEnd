@@ -5,7 +5,9 @@ interface ICaixa{
     id_caixa: number;
     altura: number;
     largura: number; 
-    ip_esp: number
+    ip_esp: number;
+    marca: string;
+    capacidade: number;
 }
 
 
@@ -18,7 +20,9 @@ class CaixaController {
             const caixa = await Caixa.create({
                 altura:req.body.altura,
                 largura:req.body.largura,
-                ip_esp: req.body.ip_esp
+                ip_esp: req.body.ip_esp,
+                capacidade: req.body.capacidade,
+                marca: req.body.marca
             })
 
             caixa.save()
@@ -53,21 +57,22 @@ class CaixaController {
 
     public static async get_caixa_by_id(req: Request, res: Response){
         try{
-            const caixa = await res.status(200).json(Caixa.findOne({
-                where: {id_caixa: req.body.id_caixa}
-            }))
-
-    
+            console.log(req.params.id_caixa)
+            const caixa = await Caixa.findOne({
+                where: {id_caixa: req.params.id_caixa}
+            })
 
             res.status(200).json({
-                message: "Sucesso ao retornar usuário!",
+                message: "Sucesso ao retornar caixa!",
                 results: [caixa]
             })
+            
         }catch(err){
             res.status(500).json({
-                error_message: "Houve um erro ao retornar usuário",
+                error_message: "Houve um erro ao retornar caixa!",
                 error: err
             })
+             
         }
     }
 

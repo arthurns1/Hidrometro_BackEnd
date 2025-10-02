@@ -49,19 +49,37 @@ class DadosController {
         }
     }
 
-    public static async get_dado_by_id(req: Request, res: Response){
+    public static async get_dados_by_id_caixa(req:Request, res:Response){
         try{
-            const caixa = await res.status(200).json(Dado.findOne({
-                where: {id_dado: req.body.id_caixa}
-            }))
+            const dados = await Dado.findOne({
+                where: {id_da_caixa: req.params.id_caixa}
+            })
 
             res.status(200).json({
-                message: "Sucesso ao retornar usuário!",
-                results: [caixa]
+                message: "Sucesso ao retornar dados!",
+                results: [dados]
             })
         }catch(err){
             res.status(500).json({
-                error_message: "Houve um erro ao retornar usuário",
+                error_message: "Houve um erro ao retornar dados!",
+                error: err
+            })
+        }
+    }
+
+    public static async get_dado_by_id(req: Request, res: Response){
+        try{
+            const dado = await Dado.findOne({
+                where: {id_dado: req.params.id_dado}
+            })
+
+            res.status(200).json({
+                message: "Sucesso ao retornar dado!",
+                results: [dado]
+            })
+        }catch(err){
+            res.status(500).json({
+                error_message: "Houve um erro ao retornar dado",
                 error: err
             })
         }

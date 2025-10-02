@@ -22,6 +22,14 @@ const Caixa = sequelize.define(
             type: Sequelize.STRING,
             allowNull: false,
             unique: true,
+        },
+        marca: {
+            type: Sequelize.STRING,
+            allowNull: false,
+        },
+        capacidade: {
+            type: Sequelize.NUMBER,
+            allowNull: false
         }
     },
     {

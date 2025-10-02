@@ -17,6 +17,6 @@ Server.listen(8081, () => {
 });
 
 Dado.create({
-    id_da_caixa: 1,
-    altura: 5.5
+    id_da_caixa: 16,
+    altura: 300
 })
