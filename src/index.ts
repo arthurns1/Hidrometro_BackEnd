@@ -1,5 +1,6 @@
 import Server from "./Server/Server";
 import { intervalRequest } from "./app/functions/IntervalRequest";
+import { Usuario } from "./app/models/Usuario";
 import { sequelize } from "./config/database";
 
 (async () => {
@@ -16,7 +17,6 @@ Server.listen(8081, () => {
 });
 
 intervalRequest();
-
 //Ainda faltam:
 //Middlewares para validação;
 //Testes automatizados;

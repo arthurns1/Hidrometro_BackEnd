@@ -5,8 +5,11 @@ import { dados } from "../routes/dados";
 import { usuario } from "../routes/usuarios";
 
 import cors from "cors";
+import { AuthController } from "../app/Controllers/AuthController";
 
 const Server = Express();
+
+Server.use(Express.json());
 
 Server.get("/", (req, res) => {
     res.json({
@@ -14,7 +17,8 @@ Server.get("/", (req, res) => {
     }).status(200);
 });
 
-Server.use(Express.json());
+Server.get("/login", AuthController.login);
+
 Server.use(
     cors({
         origin: "*",
