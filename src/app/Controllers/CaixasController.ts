@@ -2,12 +2,11 @@ import { Request, Response } from "express";
 import { Caixa } from "../models/Caixa";
 
 interface ICaixa {
-    id_caixa: number;
-    altura: number;
-    largura: number;
-    ip_esp: number;
-    marca: string;
     capacidade: number;
+    marca: string;
+    login: string;
+    sensor: string;
+    ip_esp: string;
 }
 
 class CaixaController {
@@ -19,22 +18,20 @@ class CaixaController {
     ) {
         try {
             const caixa = await Caixa.create({
-                altura: req.body.altura,
-                largura: req.body.largura,
-                ip_esp: req.body.ip_esp,
                 capacidade: req.body.capacidade,
                 marca: req.body.marca,
+                login: req.body.login,
+                sensor: req.body.sensor,
+                ip_esp: req.body.ip_esp,
             });
 
-            caixa.save();
-
             res.status(201).json({
-                success_message: "Usuário criado com sucesso",
+                success_message: "Caixa registrada com sucesso!",
                 results: [],
             });
         } catch (err) {
             res.status(500).json({
-                error_message: "Houve um erro ao criar caixa!",
+                error_message: "Houve um erro ao registrar caixa!",
                 error: err,
             });
         }
@@ -58,7 +55,6 @@ class CaixaController {
 
     public static async get_caixa_by_id(req: Request, res: Response) {
         try {
-            console.log(req.params.id_caixa);
             const caixa = await Caixa.findOne({
                 where: { id_caixa: req.params.id_caixa },
             });
@@ -82,12 +78,12 @@ class CaixaController {
             });
 
             res.status(200).json({
-                message: "Caixa editada com sucesso!",
+                message: "Informações editadas com sucesso!",
                 results: [],
             });
         } catch (err) {
             res.status(500).json({
-                error_message: "Houve um erro ao editar caixa!",
+                error_message: "Houve um erro ao editar informações da caixa!",
                 error: err,
             });
         }

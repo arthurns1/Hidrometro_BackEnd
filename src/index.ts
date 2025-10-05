@@ -13,3 +13,7 @@ import { sequelize } from "./config/database";
 Server.listen(8081, () => {
     console.log("Servidor iniciado com sucesso!");
 });
+
+//Ainda faltam:
+//Middlewares;
+//Testes automatizados;

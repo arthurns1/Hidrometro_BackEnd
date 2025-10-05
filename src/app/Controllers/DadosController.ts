@@ -2,10 +2,9 @@ import { Request, Response } from "express";
 import { Dado } from "../models/Dado";
 
 interface IDado {
-    id_dado: number;
-    id_da_caixa: number;
-    data_envio: Date;
+    data_criacao: Date;
     altura: number;
+    id_caixa: number;
 }
 
 class DadosController {
@@ -17,15 +16,13 @@ class DadosController {
     ) {
         try {
             const caixa = await Dado.create({
-                id_da_caixa: req.body.id_da_caixa,
-                data_envio: req.body.data_envio,
+                id_caixa: req.body.id_caixa,
+                data_criacao: req.body.data_criacao,
                 altura: req.body.altura,
             });
 
-            caixa.save();
-
             res.status(201).json({
-                success_message: "Dado salvo com sucesso",
+                success_message: "Dado salvo com sucesso!",
                 results: [],
             });
         } catch (err) {
@@ -88,10 +85,7 @@ class DadosController {
         }
     }
 
-    public static async update_dado_by_id(
-        req: Request<{}, {}, IDado>,
-        res: Response,
-    ) {
+    public static async update_dado_by_id(req: Request, res: Response) {
         try {
             await Dado.update(req.body, {
                 where: { id_dado: req.body.id_dado },
