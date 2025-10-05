@@ -19,6 +19,8 @@ Usuario.init(
     {
         sequelize,
         timestamps: false,
+        tableName: "dados",
+        modelName: "dados",
     },
 );
 

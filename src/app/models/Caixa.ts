@@ -37,6 +37,7 @@ Caixa.init(
     {
         sequelize,
         timestamps: false,
+        tableName: "caixas",
     },
 );
 

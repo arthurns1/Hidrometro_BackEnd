@@ -13,8 +13,9 @@ Dado.init(
             autoIncrement: true,
         },
         data_criacao: {
-            type: Sequelize.NOW,
+            type: Sequelize.DATE,
             allowNull: false,
+            defaultValue: new Date(),
         },
         altura: {
             type: Sequelize.FLOAT,
@@ -28,6 +29,8 @@ Dado.init(
     {
         sequelize,
         timestamps: false,
+        tableName: "dados",
+        modelName: "dados",
     },
 );
 

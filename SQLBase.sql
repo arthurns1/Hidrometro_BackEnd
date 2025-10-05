@@ -23,3 +23,19 @@ CREATE TABLE dados(
 	CONSTRAINT pk_id_dado PRIMARY KEY (id_dado),
 	CONSTRAINT fk_id_caixa FOREIGN KEY (id_caixa) REFERENCES caixas(id_caixa) ON DELETE CASCADE
 );
+
+INSERT INTO usuarios (login, senha) VALUES ('Jairo', '123');
+INSERT INTO usuarios (login, senha) VALUES ('Mario', '456');
+INSERT INTO usuarios (login, senha) VALUES ('Chico', '321');
+INSERT INTO usuarios (login, senha) VALUES ('Antonio', '654');
+
+INSERT INTO caixas VALUES (DEFAULT, 10000, 'Fortlev', 'Jairo', 'Pressão', '255.255.255.255');
+INSERT INTO caixas VALUES (DEFAULT, 1000, 'Fortlev', 'Jairo', 'Distancia', '251.253.255.255');
+INSERT INTO caixas VALUES (DEFAULT, 2500, 'Amanco', 'Antonio', 'Distancia', '225.255.255.255');
+INSERT INTO caixas VALUES (DEFAULT, 3000, 'Fortlev', 'Mario', 'Pressão', '254.255.215.255');
+INSERT INTO caixas VALUES (DEFAULT, 2134, 'Tigre', 'Antonio', 'Pressão', '255.245.255.255');
+INSERT INTO caixas VALUES (DEFAULT, 4000, 'Amanco', 'Antonio', 'Pressão', '215.255.255.255');
+INSERT INTO caixas VALUES (DEFAULT, 1000, 'Amanco', 'Chico', 'Distancia', '255.205.225.255');
+INSERT INTO caixas VALUES (DEFAULT, 9000, 'Tigre', 'Mario', 'Distancia', '255.255.255.255');
+INSERT INTO caixas VALUES (DEFAULT, 7000, 'Amanco', 'Antonio', 'Pressão', '255.255.255.205');
+INSERT INTO caixas VALUES (DEFAULT, 3000, 'Fortlev', 'Antonio', 'Pressão', '255.255.155.255');
