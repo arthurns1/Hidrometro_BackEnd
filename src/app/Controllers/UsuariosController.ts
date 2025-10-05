@@ -28,7 +28,7 @@ export class UsuariosController {
 
     static async get_all_usuarios(req: Request, res: Response) {
         try {
-            const usuarios = Usuario.findAll();
+            const usuarios = await Usuario.findAll();
 
             res.status(200).json({
                 sucess_message: "Sucesso ao retornar usuários",
@@ -42,11 +42,11 @@ export class UsuariosController {
         }
     }
 
-    static get_usuario_by_login(req: Request, res: Response) {
+    static async get_usuario_by_login(req: Request, res: Response) {
         try {
-            const usuario = Usuario.findOne({
+            const usuario = await Usuario.findOne({
                 where: {
-                    login: req.body.login,
+                    login: req.params.login,
                 },
             });
 
@@ -56,17 +56,17 @@ export class UsuariosController {
             });
         } catch (err) {
             res.status(500).json({
-                error_message: "Houve um erro ao retornar o usuário!",
+                error_message: `Houve um erro ao retornar o usuário: ${err}`,
                 error: err,
             });
         }
     }
 
-    static update_usuario_by_login(req: Request, res: Response) {
+    static async update_usuario_by_login(req: Request, res: Response) {
         try {
-            const usuario = Usuario.update(req.body, {
+            const usuario = await Usuario.update(req.body, {
                 where: {
-                    login: req.body.login,
+                    login: req.params.login,
                 },
             });
 
@@ -81,11 +81,11 @@ export class UsuariosController {
         }
     }
 
-    static delete_usuario_by_login(req: Request, res: Response) {
+    static async delete_usuario_by_login(req: Request, res: Response) {
         try {
-            const usuario = Usuario.destroy({
+            const usuario = await Usuario.destroy({
                 where: {
-                    login: req.body.login,
+                    login: req.params.login,
                 },
             });
 

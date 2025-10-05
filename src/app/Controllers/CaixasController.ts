@@ -74,7 +74,7 @@ class CaixaController {
     public static async update_caixa_by_id(req: Request, res: Response) {
         try {
             await Caixa.update(req.body, {
-                where: { id_caixa: req.body.id_caixa },
+                where: { id_caixa: req.params.id_caixa },
             });
 
             res.status(200).json({
@@ -91,8 +91,8 @@ class CaixaController {
 
     public static async delete_caixa_by_id(req: Request, res: Response) {
         try {
-            Caixa.destroy({
-                where: { id_caixa: req.body.id_caixa },
+            await Caixa.destroy({
+                where: { id_caixa: req.params.id_caixa },
             });
 
             res.status(200).json({

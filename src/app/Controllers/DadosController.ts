@@ -88,7 +88,7 @@ class DadosController {
     public static async update_dado_by_id(req: Request, res: Response) {
         try {
             await Dado.update(req.body, {
-                where: { id_dado: req.body.id_dado },
+                where: { id_dado: req.params.id_dado },
             });
 
             res.status(200).json({
@@ -105,8 +105,8 @@ class DadosController {
 
     public static async delete_dado_by_id(req: Request, res: Response) {
         try {
-            Dado.destroy({
-                where: { id_dado: req.body.id_dado },
+            await Dado.destroy({
+                where: { id_dado: req.params.id_dado },
             });
 
             res.status(200).json({

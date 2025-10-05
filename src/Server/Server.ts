@@ -1,6 +1,9 @@
 import Express from "express";
+
 import { caixas } from "../routes/caixas";
 import { dados } from "../routes/dados";
+import { usuario } from "../routes/usuarios";
+
 import cors from "cors";
 
 const Server = Express();
@@ -19,5 +22,6 @@ Server.use(
 );
 Server.use("/caixas", caixas);
 Server.use("/dados", dados);
+Server.use("/usuarios", usuario);
 
 export default Server;

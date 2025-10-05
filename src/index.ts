@@ -1,6 +1,5 @@
 import Server from "./Server/Server";
 import { intervalRequest } from "./app/functions/IntervalRequest";
-import { Caixa } from "./app/models/Caixa";
 import { sequelize } from "./config/database";
 
 (async () => {
