@@ -1,40 +1,43 @@
-import Sequelize from "sequelize"
-import {sequelize} from "../../config/database"
+import Sequelize, { Model } from "sequelize";
+import { sequelize } from "../../config/database";
+import { Usuario } from "./Usuario";
 
-const Caixa = sequelize.define(
-    "caixa",
+class Caixa extends Model {}
+
+Caixa.init(
     {
-        id_caixa:{
+        id_caixa: {
             type: Sequelize.INTEGER,
             primaryKey: true,
             allowNull: false,
             autoIncrement: true,
         },
-        altura: {
+        capacidade: {
             type: Sequelize.FLOAT,
             allowNull: false,
         },
-        largura: {
-            type: Sequelize.FLOAT,
-            allowNull: false
+        marca: {
+            type: Sequelize.STRING,
+            allowNull: false,
+        },
+        login: {
+            type: Sequelize.STRING,
+            allowNull: false,
+        },
+        sensor: {
+            type: Sequelize.STRING,
+            allowNull: false,
         },
         ip_esp: {
             type: Sequelize.STRING,
             allowNull: false,
             unique: true,
         },
-        marca: {
-            type: Sequelize.STRING,
-            allowNull: false,
-        },
-        capacidade: {
-            type: Sequelize.NUMBER,
-            allowNull: false
-        }
     },
     {
-        timestamps:false
-    }
-)
+        sequelize,
+        timestamps: false,
+    },
+);
 
-export {Caixa}
+export { Caixa };

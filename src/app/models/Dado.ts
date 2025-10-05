@@ -1,42 +1,44 @@
-import {sequelize} from "../../config/database"
-import Sequelize from "sequelize"
-import { Caixa } from "./Caixa"
+import { sequelize } from "../../config/database";
+import Sequelize, { Model } from "sequelize";
+import { Caixa } from "./Caixa";
 
-const Dado = sequelize.define("dado",{
-    id_dado:{
-        type: Sequelize.INTEGER,
-        allowNull:false,
-        primaryKey: true,
-        autoIncrement: true
-    },
-    id_da_caixa:{
-        type: Sequelize.INTEGER,
-        allowNull: true,   
-    },
-    data_envio: {
-        type: Sequelize.DATE,
-        allowNull: false,
-        defaultValue: Date.now()
-    },
-    altura: {
-        type: Sequelize.FLOAT,
-        allowNull: true
-    }
+class Dado extends Model {}
 
-},{
-    timestamps: false
-})
-
-Caixa.hasMany(Dado, 
+Dado.init(
     {
-        foreignKey: "id_da_caixa",
-        onDelete: "CASCADE",
-        onUpdate: "CASCADE"
-    }
-)
+        id_dado: {
+            type: Sequelize.INTEGER,
+            allowNull: false,
+            primaryKey: true,
+            autoIncrement: true,
+        },
+        data_criacao: {
+            type: Sequelize.NOW,
+            allowNull: false,
+        },
+        altura: {
+            type: Sequelize.FLOAT,
+            allowNull: true,
+        },
+        id_caixa: {
+            type: Sequelize.INTEGER,
+            allowNull: true,
+        },
+    },
+    {
+        sequelize,
+        timestamps: false,
+    },
+);
 
-Dado.belongsTo(Caixa,{
-    foreignKey: "id_da_caixa"
-})
+Caixa.hasMany(Dado, {
+    foreignKey: "id_caixa",
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE",
+});
 
-export {Dado}
+Dado.belongsTo(Caixa, {
+    foreignKey: "id_caixa",
+});
+
+export { Dado };

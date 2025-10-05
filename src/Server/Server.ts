@@ -12,10 +12,12 @@ Server.get("/", (req, res) => {
 });
 
 Server.use(Express.json());
-Server.use(cors({
-    origin: "*"
-}))
-Server.use("/caixas", caixas)
-Server.use("/dados", dados)
+Server.use(
+    cors({
+        origin: "*",
+    }),
+);
+Server.use("/caixas", caixas);
+Server.use("/dados", dados);
 
 export default Server;
