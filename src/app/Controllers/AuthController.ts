@@ -1,6 +1,9 @@
 import { Request, Response } from "express";
 import Jwt from "jsonwebtoken";
 import { Usuario } from "../models/Usuario";
+import { config } from "dotenv";
+
+config();
 
 interface ILogin {
     login: string;
@@ -9,7 +12,7 @@ interface ILogin {
 
 export class AuthController {
     static async login(req: Request<{}, {}, ILogin>, res: Response) {
-        console.log(process.env.SECRET_KEY);
+        console.log(req.body.login);
         try {
             const usuario = await Usuario.findOne({
                 where: {
@@ -35,6 +38,7 @@ export class AuthController {
                 process.env.SECRET_KEY as string,
                 { expiresIn: "1h" },
             );
+
             if (error_messages.length == 0) {
                 res.status(200).json({
                     sucess_message: "Login realizado com sucesso!",

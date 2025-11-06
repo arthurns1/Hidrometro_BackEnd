@@ -30,7 +30,7 @@ Caixa.init(
         },
         ip_esp: {
             type: Sequelize.STRING,
-            allowNull: false,
+            allowNull: true,
             unique: true,
         },
     },

@@ -1,5 +1,6 @@
 import { Usuario } from "../models/Usuario";
 import { Request, Response } from "express";
+import bcrypt from "bcrypt";
 
 interface IUsuario {
     login: string;
@@ -9,6 +10,8 @@ interface IUsuario {
 export class UsuariosController {
     static async create_usuario(req: Request<{}, {}, IUsuario>, res: Response) {
         try {
+            const senha = await bcrypt.hash(req.body.senha, 10);
+
             const usuario = await Usuario.create({
                 login: req.body.login,
                 senha: req.body.senha,

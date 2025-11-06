@@ -71,6 +71,24 @@ class CaixaController {
         }
     }
 
+    public static async get_caixas_by_login(req: Request, res: Response) {
+        try {
+            const caixas = await Caixa.findAll({
+                where: { login: req.params.login },
+            });
+
+            res.status(200).json({
+                message: "Sucesso ao retornar caixas!",
+                results: caixas,
+            });
+        } catch (err) {
+            res.status(500).json({
+                error_message: "Houve um erro ao retornar caixas!",
+                error: err,
+            });
+        }
+    }
+
     public static async update_caixa_by_id(req: Request, res: Response) {
         try {
             await Caixa.update(req.body, {

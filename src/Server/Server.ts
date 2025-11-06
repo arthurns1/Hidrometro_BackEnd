@@ -7,9 +7,18 @@ import { usuario } from "../routes/usuarios";
 import cors from "cors";
 import { AuthController } from "../app/Controllers/AuthController";
 
+//config
 const Server = Express();
 
 Server.use(Express.json());
+
+Server.use(
+    cors({
+        origin: "http://localhost:5173",
+        methods: ["GET", "POST", "PUT", "DELETE"],
+        credentials: true,
+    }),
+);
 
 Server.get("/", (req, res) => {
     res.json({
@@ -17,13 +26,8 @@ Server.get("/", (req, res) => {
     }).status(200);
 });
 
-Server.get("/login", AuthController.login);
-
-Server.use(
-    cors({
-        origin: "*",
-    }),
-);
+//Rotas
+Server.post("/login", AuthController.login);
 Server.use("/caixas", caixas);
 Server.use("/dados", dados);
 Server.use("/usuarios", usuario);
